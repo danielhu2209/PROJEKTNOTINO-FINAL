@@ -1,0 +1,68 @@
+/* --- Változók és Alapbeállítások --- */
+:root {
+  --color-bg: #f9f7f2;
+  --color-text: black;
+  --color-gold: #d4af37;
+  --color-deep: #4a2c2a;
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Lato", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 400; color: var(--color-text); }
+a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+ul { list-style: none; }
+
+
+.btn {
+  display: inline-block; padding: 12px 25px; border: 1px solid var(--color-text);
+  text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; cursor: pointer;
+  transition: all 0.3s ease; background: transparent; text-align: center;
+}
+.btn:hover { background-color: var(--color-text); color: var(--color-bg); }
+.btn-gold { border-color: var(--color-gold); color: var(--color-gold); }
+.btn-gold:hover { background-color: var(--color-gold); color: #fff; }
+.btn-danger { border-color: #c62828; color: #c62828; padding: 5px 15px; font-size: 0.7rem; }
+.btn-danger:hover { background-color: #c62828; color: #fff; }
+
+header {
+  padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
+  position: fixed; width: 100%; top: 0; z-index: 1000;
+  background-color: rgba(249, 247, 242, 0.98); border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.logo { font-family: var(--font-heading); font-size: 1.8rem; letter-spacing: 2px; font-weight: 600; }
+nav ul { display: flex; gap: 30px; align-items: center; }
+nav a { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+nav a:hover, nav a.active { color: var(--color-gold); }
+.auth-link { font-weight: 700; color: var(--color-gold); }
+.mobile-menu-btn { display: none; font-size: 1.5rem; cursor: pointer; }
+
+
+.page-header { margin-top: 100px; padding: 60px 20px 40px; text-align: center; }
+.page-header h1 { font-size: 3rem; margin-bottom: 10px; }
+
+
+footer {
+  background-color: #1a1a1a; color: #888; padding: 40px 20px; text-align: center; font-size: 0.8rem; margin-top: auto;
+}
+.social-links { margin-bottom: 20px; }
+.social-links a { color: #fff; margin: 0 10px; font-size: 1.2rem; }
+
+
+@media (max-width: 768px) {
+  header { padding: 15px 20px; }
+  nav ul { display: none; }
+  .mobile-menu-btn { display: block; }
+}

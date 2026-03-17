@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>L'Essence - Regisztráció</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="kozos.css" />
+    <link rel="stylesheet" href="auth.css" />
+    
+  </head>
+  <body>
+    <header>
+      <div class="logo">L'ESSENCE</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Főoldal</a></li>
+          <li><a href="elerhetoseg.html">Kapcsolat</a></li>
+          <li><a href="bemutatkozas.html">Rólunk</a></li>
+          <li><a href="webshop.html">Kollekciók</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="auth-container">
+      <div class="auth-card">
+        <h1>Regisztráció</h1>
+        <p>Hozza létre saját L'Essence fiókját.</p>
+
+        <form id="register-form">
+          <div class="form-group">
+            <label for="name">Teljes Név</label>
+            <input type="text" id="name" required placeholder="Kovács Anna" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email cím</label>
+            <input
+              type="email"
+              id="email"
+              required
+              placeholder="pelda@email.hu"
+            />
+          </div>
+          <div class="form-group">
+            <label for="address">Szállítási cím</label>
+            <input
+              type="text"
+              id="address"
+              required
+              placeholder="1052 Budapest, Váci utca 10."
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Jelszó</label>
+            <input
+              type="password"
+              id="password"
+              required
+              placeholder="••••••••"
+            />
+          </div>
+          <button type="submit" class="btn">Regisztrálok</button>
+        </form>
+
+        <div class="auth-links">
+          Már van fiókja? <a href="login.html">Jelentkezzen be itt</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 L'Essence Parfüméria. Minden jog fenntartva.</p>
+    </footer>
+
+    <script>
+      const registerForm = document.getElementById("register-form");
+
+      registerForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        
+        const newUser = {
+          nev: document.getElementById("name").value.trim(),
+          email: document.getElementById("email").value.trim(),
+          cim: document.getElementById("address").value.trim(),
+          jelszo: document.getElementById("password").value,
+          rendelesi_elozmenyek: [], 
+        };
+
+        try {
+          
+          const checkResponse = await fetch(
+            `http://localhost:3000/felhasznalok?email=${newUser.email}`,
+          );
+          const existingUsers = await checkResponse.json();
+
+          if (existingUsers.length > 0) {
+            alert("Ezzel az email címmel már regisztráltak!");
+            return;
+          }
+
+        
+          const response = await fetch("http://localhost:3000/felhasznalok", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newUser),
+          });
+
+          if (response.ok) {
+            alert("Sikeres regisztráció! Most már bejelentkezhet.");
+            window.location.href = "login.html"; 
+          } else {
+            throw new Error("Hiba a regisztráció során");
+          }
+        } catch (error) {
+          console.error("Hiba:", error);
+          alert("Nem sikerült kapcsolódni a szerverhez.");
+        }
+      });
+    </script>
+  </body>
+</html>

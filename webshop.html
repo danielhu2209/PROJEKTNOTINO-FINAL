@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>L'Essence - Kollekciók & Webshop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="kozos.css" />
+    <link rel="stylesheet" href="webshop.css" />
+      
+  </head>
+  <body>
+    <header>
+      <div class="logo">L'ESSENCE</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Főoldal</a></li>
+          <li><a href="bemutatkozas.html">Rólunk</a></li>
+          <li><a href="webshop.html" style="color: var(--color-gold)">Kollekciók</a></li>
+          <li><a href="elerhetoseg.html">Kapcsolat</a></li>
+          <li><a href="login.html" id="auth-link" class="auth-link">Bejelentkezés</a></li>
+          <li class="cart-icon-container" onclick="toggleCart()">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="page-header">
+      <h1>Boutique</h1>
+      <p>Fedezze fel exkluzív illatainkat</p>
+    </div>
+
+    <main class="shop-container">
+      <aside class="filters">
+        <div class="filter-group">
+          <h4>Keresés</h4>
+          <input type="text" id="search-input" class="search-box" placeholder="Parfüm neve alapján..." />
+        </div>
+        <div class="filter-group">
+          <h4>Illatjegyek</h4>
+          <label class="filter-label"><input type="checkbox" value="virágos" /> Virágos</label>
+          <label class="filter-label"><input type="checkbox" value="fás" /> Fás</label>
+          <label class="filter-label"><input type="checkbox" value="orientális" /> Orientális</label>
+          <label class="filter-label"><input type="checkbox" value="citrusos" /> Citrusos</label>
+          <label class="filter-label"><input type="checkbox" value="fűszeres" /> Fűszeres</label>
+          <label class="filter-label"><input type="checkbox" value="édes" /> Édes</label>
+          <label class="filter-label"><input type="checkbox" value="bőr" /> Bőr</label>
+        </div>
+      </aside>
+
+      <section class="products-area">
+        <div class="products-header">
+          <span><strong id="product-count">0</strong> termék található</span>
+          <select id="sort-select" class="sort-select">
+            <option value="default">Alapértelmezett sorrend</option>
+            <option value="price-asc">Ár: Alacsonytól Magasig</option>
+            <option value="price-desc">Ár: Magastól Alacsonyig</option>
+          </select>
+        </div>
+        <div class="collection-grid" id="product-grid"></div>
+      </section>
+    </main>
+
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h2>Kosaram</h2>
+        <i class="fas fa-times close-cart" onclick="toggleCart()"></i>
+      </div>
+      <div class="cart-items" id="cart-items-container"></div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Összesen:</span>
+          <span id="cart-total-price">0 Ft</span>
+        </div>
+        <button class="btn btn-checkout" onclick="checkout()">
+          Fizetés és Megrendelés
+        </button>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 L'Essence Parfüméria. Minden jog fenntartva.</p>
+    </footer>
+    <script src="webshop.js"></script>
+  </body>
+</html>
